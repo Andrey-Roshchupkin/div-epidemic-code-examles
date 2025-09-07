@@ -304,7 +304,7 @@ You should see elements with proper roles (like "button", "tablist", "tab", "tab
 For a hands-on experience with all the code examples from this article, you can:
 
 - **Try the Interactive Demo:** [https://andrey-roshchupkin.github.io/div-epidemic-code-examles/](https://andrey-roshchupkin.github.io/div-epidemic-code-examles/) - Click through the examples, test keyboard navigation, and inspect the accessibility tree yourself
-- **View the Complete Source Code:** [https://github.com/Andrey-Roshchupkin/div-epidemic-code-examles](https://github.com/Andrey-Roshchupkin/div-epidemic-code-examles) - All examples are available in a single HTML file with working JavaScript
+- **View the Complete Source Code:** [https://github.com/Andrey-Roshchupkin/div-epidemic-code-examles/](https://github.com/Andrey-Roshchupkin/div-epidemic-code-examles/) - All examples are available in a single HTML file with working JavaScript
 
 ### Further Reading
 
