@@ -11,7 +11,7 @@ The goal of these examples is to visually demonstrate the difference between non
 ### 🔗 View the Examples Live
 
 You can view a live version of all the code examples here:
-[GitHub Pages Link]
+[[GitHub Pages Link]](https://andrey-roshchupkin.github.io/div-epidemic-code-examles/)
 
 ### 📝 Read the Full Article
 
