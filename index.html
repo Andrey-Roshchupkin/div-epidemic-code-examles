@@ -58,12 +58,16 @@
             margin-right: 10px;
         }
         .custom-button {
-            background-color: #dc3545;
+            background-color: #dc3545; /* Red for nightmare examples */
             color: white;
             border: none; /* For the div with role="button" */
         }
+        .custom-button.aria-enhanced {
+            background-color: #ffc107; /* Yellow for life vest examples */
+            color: #212529;
+        }
         .native-button {
-            background-color: #007bff;
+            background-color: #28a745; /* Green for best practices */
             color: white;
             border: none;
         }
@@ -107,11 +111,19 @@
         .read-more-button {
             display: inline-block;
             padding: 8px 15px;
-            background-color: #28a745;
+            background-color: #dc3545; /* Red for nightmare examples */
             color: white;
             border-radius: 4px;
             text-decoration: none;
             margin-top: 10px;
+        }
+        .read-more-button.aria-enhanced {
+            background-color: #ffc107; /* Yellow for life vest examples */
+            color: #212529;
+        }
+        .read-more-button.semantic {
+            background-color: #28a745; /* Green for best practices */
+            color: white;
         }
         .read-more-button:hover {
             opacity: 0.9;
@@ -221,18 +233,18 @@
     <section>
         <h2>Example 1: The Button</h2>
         <div class="example-block bad">
-            <h3>1. The `<div>` Nightmare</h3>
+            <h3>1. The &lt;div&gt; Nightmare</h3>
             <p>This uses a generic <code>div</code> to mimic a button. Try clicking it, or tabbing to it (you can't without custom JS!), or pressing enter on it.</p>
-            <div class="custom-button" id="cta-button-div">
+            <div class="custom-button" id="cta-button-div" role="button" tabindex="0" aria-label="Submit Form (Div)">
               <span class="button-label">Submit (Div)</span>
             </div>
         </div>
 
         <div class="example-block neutral">
-            <h3>2. The `<div>` with a Life Vest</h3>
+            <h3>2. The &lt;div&gt; with a Life Vest</h3>
             <p>A <code>div</code> with ARIA attributes to improve accessibility. You can tab to it and press Enter/Space.</p>
             <div 
-              class="custom-button" 
+              class="custom-button aria-enhanced" 
               role="button" 
               tabindex="0" 
               aria-label="Submit Form (Accessible Div)"
@@ -257,26 +269,26 @@
         <h2>Example 2: A Product Card</h2>
         <div class="product-card-container">
             <div class="example-block bad product-card">
-                <h3>1. The `<div>` Nightmare</h3>
+                <h3>1. The &lt;div&gt; Nightmare</h3>
                 <div class="product-image-container">
-                    <img src="https://via.placeholder.com/300x180/FF0000/FFFFFF?text=Product+Div" alt="A cool product">
+                    <img src="https://picsum.photos/300/180?random=1" alt="A cool product">
                 </div>
                 <div class="product-info-container">
                     <div class="product-title">Amazing Product (Div)</div>
                     <div class="product-description">
                         This product is amazing, built with non-semantic elements.
                     </div>
-                    <div class="read-more-button" onclick="alert('Navigating to product page (Div)')">
+                    <div class="read-more-button" role="button" tabindex="0" aria-label="Read more about Amazing Product (Div)" onclick="alert('Navigating to product page (Div)')">
                         Read More
                     </div>
                 </div>
             </div>
 
             <div class="example-block neutral product-card">
-                <h3>2. The `<div>` with a Life Vest</h3>
+                <h3>2. The &lt;div&gt; with a Life Vest</h3>
                 <div class="product-card" role="article" aria-labelledby="product-title-aria-card">
                     <div class="product-image-container">
-                        <img src="https://via.placeholder.com/300x180/FFA500/FFFFFF?text=Product+ARIA+Div" alt="An accessible product">
+                        <img src="https://picsum.photos/300/180?random=2" alt="An accessible product">
                     </div>
                     <div class="product-info-container">
                         <div id="product-title-aria-card" role="heading" aria-level="2">Amazing Product (ARIA Div)</div>
@@ -284,7 +296,7 @@
                             This product is amazing, now with ARIA attributes.
                         </div>
                         <div 
-                            class="read-more-button" 
+                            class="read-more-button aria-enhanced" 
                             role="link" 
                             tabindex="0" 
                             aria-label="Read more about Amazing Product (ARIA Div)"
@@ -299,13 +311,13 @@
             <div class="example-block product-card">
                 <h3>3. The Best Practice (Semantic HTML)</h3>
                 <article class="product-card">
-                    <img src="https://via.placeholder.com/300x180/007bff/FFFFFF?text=Product+Semantic" alt="A semantic product">
+                    <img src="https://picsum.photos/300/180?random=3" alt="A semantic product">
                     <div class="product-info-container">
                         <h2>Amazing Product (Semantic)</h2>
                         <p>
                             This product is amazing, built with semantic HTML.
                         </p>
-                        <a href="#semantic-product-page" class="read-more-button" aria-label="Read more about Amazing Product (Semantic)">
+                        <a href="#semantic-product-page" class="read-more-button semantic" aria-label="Read more about Amazing Product (Semantic)">
                             Read More
                         </a>
                     </div>
@@ -319,8 +331,8 @@
     <section>
         <h2>Example 3: Modal Navigation</h2>
         <p>Click the buttons below to open each version of the modal. Try navigating with a keyboard (Tab key) and observe the differences.</p>
-        <button class="native-button" onclick="openModal('div-modal')">Open Div Modal</button>
-        <button class="native-button" onclick="openModal('aria-modal')">Open ARIA Div Modal</button>
+        <button class="custom-button" onclick="openModal('div-modal')">Open Div Modal</button>
+        <button class="custom-button aria-enhanced" onclick="openModal('aria-modal')">Open ARIA Div Modal</button>
         <button class="native-button" onclick="openModal('semantic-modal')">Open Semantic Modal</button>
 
         <div class="modal-backdrop" id="div-modal">
@@ -362,6 +374,7 @@
                             aria-selected="true"
                             tabindex="0"
                             aria-controls="aria-nav-general"
+                            id="aria-tab-general"
                             onclick="showAriaTab('aria-nav-general', this)"
                             onkeydown="handleAriaTabKeydown(event, this)"
                         >
@@ -373,6 +386,7 @@
                             aria-selected="false"
                             tabindex="-1"
                             aria-controls="aria-nav-privacy"
+                            id="aria-tab-privacy"
                             onclick="showAriaTab('aria-nav-privacy', this)"
                             onkeydown="handleAriaTabKeydown(event, this)"
                         >
@@ -380,11 +394,11 @@
                         </div>
                     </nav>
                     <div class="modal-content">
-                        <div class="content-tab active" id="aria-nav-general" role="tabpanel">
+                        <div class="content-tab active" id="aria-nav-general" role="tabpanel" aria-labelledby="aria-tab-general">
                             <h3>General Settings (ARIA Div)</h3>
                             <p>This is the content for the General tab in the ARIA-enhanced modal.</p>
                         </div>
-                        <div class="content-tab" id="aria-nav-privacy" role="tabpanel">
+                        <div class="content-tab" id="aria-nav-privacy" role="tabpanel" aria-labelledby="aria-tab-privacy">
                             <h3>Privacy Settings (ARIA Div)</h3>
                             <p>This is the content for the Privacy tab in the ARIA-enhanced modal.</p>
                         </div>
@@ -425,8 +439,15 @@
 
 <script>
     // --- Button JS ---
-    document.getElementById('cta-button-div').addEventListener('click', () => {
+    const ctaButtonDiv = document.getElementById('cta-button-div');
+    ctaButtonDiv.addEventListener('click', () => {
         alert('Form submitted via Div button!');
+    });
+    ctaButtonDiv.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            ctaButtonDiv.click();
+        }
     });
     // For div with role="button" (Example 1.2)
     const ctaAriaDiv = document.getElementById('cta-button-aria-div');
@@ -442,6 +463,17 @@
     document.getElementById('cta-button-native').addEventListener('click', () => {
         alert('Form submitted via Native button!');
     });
+
+    // Add keyboard support to div read-more button
+    const divReadMoreButton = document.querySelector('.read-more-button[onclick*="Div"]');
+    if (divReadMoreButton) {
+        divReadMoreButton.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                divReadMoreButton.click();
+            }
+        });
+    }
 
     // --- Modal JS ---
     function openModal(modalId) {
@@ -498,9 +530,11 @@
         parentTabList.querySelectorAll('[role="tab"]').forEach(item => {
             item.setAttribute('aria-selected', 'false');
             item.setAttribute('tabindex', '-1');
+            item.classList.remove('active'); // Remove active class for visual styling
         });
         clickedTab.setAttribute('aria-selected', 'true');
         clickedTab.setAttribute('tabindex', '0');
+        clickedTab.classList.add('active'); // Add active class for visual styling
         clickedTab.focus(); // Focus the selected tab
 
         const modalContentContainer = clickedTab.closest('.modal-body-container').querySelector('.modal-content');
