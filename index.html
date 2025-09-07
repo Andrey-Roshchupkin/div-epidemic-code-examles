@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semantic HTML Examples</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 2em;
+            line-height: 1.6;
+            background-color: #f4f7f6;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 2em;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1, h2, h3 {
+            color: #007bff;
+        }
+        pre {
+            background-color: #eef;
+            padding: 1em;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        .example-section {
+            margin-bottom: 2em;
+            padding-bottom: 1em;
+            border-bottom: 1px solid #ddd;
+        }
+        .example-section:last-child {
+            border-bottom: none;
+        }
+        
+        /* Button Styles */
+        .custom-button, .native-button {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            user-select: none;
+            text-decoration: none;
+            text-align: center;
+        }
+        .custom-button {
+            background-color: #dc3545;
+            color: white;
+        }
+        .native-button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+        }
+        .custom-button:hover, .native-button:hover {
+            opacity: 0.8;
+        }
+
+        /* Card Styles */
+        .product-card {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-card img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        .product-card .product-info-container {
+            padding: 15px;
+        }
+        .product-card .product-title, .product-card h2 {
+            margin-top: 0;
+        }
+
+        /* Modal Styles */
+        .modal-backdrop {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+        .modal-container {
+            background-color: #fff;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 8px;
+        }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .modal-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 1em;
+        }
+        .modal-nav a {
+            text-decoration: none;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Semantic HTML Examples</h1>
+    <p>This document contains all the code examples from the article "From `<div>` Hell to SEO Heaven".</p>
+
+    <hr>
+
+    <section class="example-section">
+        <h2>Example 1: The Button</h2>
+        
+        <h3>1. The `<div>` Nightmare</h3>
+        <pre><code>&lt;!-- HTML --&gt;
+&lt;div class="custom-button" id="cta-button"&gt;
+  &lt;span class="button-label"&gt;Submit&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;!-- JavaScript (Manual keyboard handling, a fragile fix for a core issue) --&gt;
+&lt;script&gt;
+  const ctaButton = document.getElementById('cta-button');
+
+  ctaButton.addEventListener('click', () =&gt; {
+    alert('Form submitted via div button!');
+  });
+
+  ctaButton.addEventListener('keydown', (event) =&gt; {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      ctaButton.click();
+    }
+  });
+&lt;/script&gt;</code></pre>
+
+        <h3>2. The `<div>` with a Life Vest</h3>
+        <pre><code>&lt;!-- HTML with ARIA attributes --&gt;
+&lt;div 
+  class="custom-button" 
+  role="button" 
+  tabindex="0" 
+  aria-label="Submit Form"
+  onclick="alert('Form submitted via accessible div button!')"
+&gt;
+  &lt;span class="button-label"&gt;Submit&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+
+        <h3>3. The Best Practice (Semantic HTML)</h3>
+        <pre><code>&lt;!-- HTML --&gt;
+&lt;button class="native-button" type="submit" aria-label="Submit Form" onclick="alert('Form submitted via native button!')"&gt;
+  Submit
+&lt;/button&gt;</code></pre>
+    </section>
+
+    <hr>
+
+    <section class="example-section">
+        <h2>Example 2: A Product Card</h2>
+        
+        <h3>1. The `<div>` Nightmare</h3>
+        <pre><code>&lt;!-- HTML --&gt;
+&lt;div class="product-card"&gt;
+  &lt;div class="product-image-container"&gt;
+    &lt;img src="https://via.placeholder.com/300" alt="A cool product"&gt;
+  &lt;/div&gt;
+  &lt;div class="product-info-container"&gt;
+    &lt;div class="product-title"&gt;Amazing Product Name&lt;/div&gt;
+    &lt;div class="product-description"&gt;
+      This is a short description of the product.
+    &lt;/div&gt;
+    &lt;div class="read-more-button" onclick="alert('Go to product page')"&gt;
+      Read More
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        
+        <h3>2. The `<div>` with a Life Vest</h3>
+        <pre><code>&lt;!-- HTML with ARIA attributes --&gt;
+&lt;div class="product-card" role="article" aria-labelledby="product-title-1"&gt;
+  &lt;div class="product-image-container"&gt;
+    &lt;img src="https://via.placeholder.com/300" alt="A cool product"&gt;
+  &lt;/div&gt;
+  &lt;div class="product-info-container"&gt;
+    &lt;div id="product-title-1" role="heading" aria-level="2"&gt;Amazing Product Name&lt;/div&gt;
+    &lt;div class="product-description"&gt;
+      This is a short description of the product.
+    &lt;/div&gt;
+    &lt;div 
+      class="read-more-button" 
+      role="link" 
+      tabindex="0" 
+      aria-label="Read more about Amazing Product Name"
+      onclick="alert('Go to product page')"
+    &gt;
+      Read More
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+        <h3>3. The Best Practice (Semantic HTML)</h3>
+        <pre><code>&lt;!-- HTML --&gt;
+&lt;article class="product-card"&gt;
+  &lt;img src="https://via.placeholder.com/300" alt="A cool product"&gt;
+  &lt;div class="product-info-container"&gt;
+    &lt;h2&gt;Amazing Product Name&lt;/h2&gt;
+    &lt;p&gt;
+      This is a short description of the product.
+    &lt;/p&gt;
+    &lt;a href="#" class="read-more-button" aria-label="Read more about Amazing Product Name"&gt;
+      Read More
+    &lt;/a&gt;
+  &lt;/div&gt;
+&lt;/article&gt;</code></pre>
+    </section>
+
+    <hr>
+
+    <section class="example-section">
+        <h2>Example 3: Modal Navigation</h2>
+
+        <h3>1. The `<div>` Nightmare</h3>
+        <p><em>Note: This code requires custom JS to function.</em></p>
+        <pre><code>&lt;!-- HTML --&gt;
+&lt;div class="modal-backdrop"&gt;
+  &lt;div class="modal-container"&gt;
+    &lt;div class="modal-header"&gt;
+      &lt;div class="modal-title"&gt;Settings&lt;/div&gt;
+      &lt;div class="close-button" onclick="alert('Close Modal')"&gt;X&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="modal-body-container"&gt;
+      &lt;div class="modal-nav"&gt;
+        &lt;div class="nav-item active" onclick="alert('Show General Tab')"&gt;General&lt;/div&gt;
+        &lt;div class="nav-item" onclick="alert('Show Privacy Tab')"&gt;Privacy&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class="modal-content"&gt;
+        &lt;div class="content-tab"&gt;...General Content...&lt;/div&gt;
+        &lt;div class="content-tab" style="display:none;"&gt;...Privacy Content...&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        
+        <h3>2. The `<div>` with a Life Vest</h3>
+        <pre><code>&lt;!-- HTML with ARIA attributes --&gt;
+&lt;div 
+  class="modal-backdrop" 
+  role="dialog" 
+  aria-modal="true" 
+  aria-labelledby="modal-title"
+&gt;
+  &lt;div class="modal-container"&gt;
+    &lt;header class="modal-header"&gt;
+      &lt;h2 id="modal-title"&gt;Settings&lt;/h2&gt;
+      &lt;button class="close-button" aria-label="Close modal" onclick="alert('Close Modal')"&gt;X&lt;/button&gt;
+    &lt;/header&gt;
+    &lt;div class="modal-body-container"&gt;
+      &lt;nav class="modal-nav" role="tablist"&gt;
+        &lt;div role="tab" aria-selected="true"&gt;General&lt;/div&gt;
+        &lt;div role="tab" aria-selected="false"&gt;Privacy&lt;/div&gt;
+      &lt;/nav&gt;
+      &lt;div class="modal-content"&gt;
+        &lt;div role="tabpanel"&gt;...General Content...&lt;/div&gt;
+        &lt;div role="tabpanel" style="display:none;"&gt;...Privacy Content...&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+        <h3>3. The Best Practice (Semantic HTML)</h3>
+        <pre><code>&lt;!-- HTML --&gt;
+&lt;div class="modal-backdrop"&gt;
+  &lt;div class="modal-container" role="dialog" aria-modal="true" aria-labelledby="modal-title"&gt;
+    &lt;header class="modal-header"&gt;
+      &lt;h2 id="modal-title"&gt;Settings&lt;/h2&gt;
+      &lt;button class="close-button" aria-label="Close modal" onclick="alert('Close Modal')"&gt;X&lt;/button&gt;
+    &lt;/header&gt;
+    &lt;div class="modal-body-container"&gt;
+      &lt;nav class="modal-nav"&gt;
+        &lt;ul&gt;
+          &lt;li&gt;&lt;a href="#" class="nav-item"&gt;General&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href="#" class="nav-item"&gt;Privacy&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/nav&gt;
+      &lt;div class="modal-content"&gt;
+        &lt;section&gt;&lt;h3&gt;General Settings&lt;/h3&gt;...&lt;/section&gt;
+        &lt;section style="display:none;"&gt;&lt;h3&gt;Privacy Settings&lt;/h3&gt;...&lt;/section&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+
+</div>
+
+</body>
+</html>
