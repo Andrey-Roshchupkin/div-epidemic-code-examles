@@ -15,6 +15,6 @@ You can view a live version of all the code examples here:
 
 ### 📝 Read the Full Article
 
-## To understand the full context behind these code snippets and learn how non-semantic HTML affects developers, users, QA engineers, and the business, check out the full article on Hashnode: [From &lt;div&gt; Hell to SEO Heaven: Why Your Frontend Choices Can Make or Break Your Business](https://sdet-andrew.hashnode.dev/from-div-hell-to-seo-heaven-why-your-frontend-choices-can-make-or-break-your-business)
+## To understand the full context behind these code snippets and learn how non-semantic HTML affects developers, users, QA engineers, and the business, check out the full article on Hashnode: [From &lt;div&gt; Hell to SEO Heaven: Why Your Frontend Choices Can Make or Break Your Business](https://andrey-roshchupkin.github.io/portfolio/post/from-div-hell-to-seo-heaven)
 
 **Happy coding!**
